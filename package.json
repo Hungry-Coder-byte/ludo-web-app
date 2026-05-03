@@ -1,0 +1,43 @@
+{
+  "name": "ludo-web-app",
+  "version": "1.0.0",
+  "description": "A web-based implementation of the classic Ludo board game.",
+  "main": "backend/src/index.ts",
+  "scripts": {
+    "start": "node backend/src/index.ts",
+    "dev": "nodemon backend/src/index.ts",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "ludo",
+    "board game",
+    "react",
+    "vite",
+    "typescript",
+    "tailwind"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.0.0",
+    "express": "^npm install express",
+    "mongoose": "^7.7.0",
+    "zod": "^3.21.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/mongoose": "^5.11.0",
+    "@types/zod": "^3.21.0",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "^4.4.22"
+  },
+  "config": {
+    "env": {
+      "PORT": "3000",
+      "MONGODB_URI": "mongodb://localhost:27017/ludo_db"
+    }
+  }
+}
