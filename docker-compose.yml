@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend:/usr/src/app
+    command: "ts-node src/index.ts"
+    restart: on-failure
+    environment:
+      MONGODB_URI: mongodb://mongodb:27017/ludo
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./frontend:/usr/src/app
+    command: "npm start"
+    restart: on-failure
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    restart: always
+
+volumes:
+  mongodb_data:
